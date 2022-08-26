@@ -2,8 +2,6 @@ from kivy.app import App
 from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.anchorlayout import AnchorLayout
-from kivy.uix.textinput import TextInput
 from kivy.uix.label import Label
 import time
 import random
@@ -97,21 +95,20 @@ class MainApp(App):
 
 
     def on_press_button(self, instance):
-        if instance.text == "UPDATE":
-            matrix_new = main_loop()
-            # print_matrix(matrix)
-            client_matrix_new = random_clien_sudoku(matrix_new, complexity)
-            for i in range(9):
-                for j in range(9):
-                    matrix[i][j] = matrix_new[i][j]
-                    client_matrix[i][j] = client_matrix_new[i][j]
-            main_window.remove_widget(box_sudoku)
-            main_window.remove_widget(check)
-            main_window.remove_widget(label_loyout_end)
-            new_sudoku = main_sudoku()
-            main_window.add_widget(new_sudoku)
-            main_window.add_widget(check)
-            main_window.add_widget(label_loyout_end)
+        matrix_new = main_loop()
+        client_matrix_new = random_clien_sudoku(matrix_new, complexity)
+        for i in range(9):
+            for j in range(9):
+                matrix[i][j] = matrix_new[i][j]
+                client_matrix[i][j] = client_matrix_new[i][j]
+        # print_matrix(matrix)
+        main_window.remove_widget(box_sudoku)
+        main_window.remove_widget(check)
+        main_window.remove_widget(label_loyout_end)
+        new_sudoku = main_sudoku()
+        main_window.add_widget(new_sudoku)
+        main_window.add_widget(check)
+        main_window.add_widget(label_loyout_end)
 
 
     def check_sudoku(self, instance):
@@ -209,6 +206,7 @@ class MainApp(App):
         # First_gen_matrix
         global matrix
         matrix = main_loop()
+        # print_matrix(matrix)
         global client_matrix
         client_matrix = random_clien_sudoku(matrix, complexity)
         box_sudoku = main_sudoku()
@@ -230,3 +228,4 @@ if __name__ == '__main__':
     Config.set("graphics", "height", "800")
     app = MainApp()
     app.run()
+
