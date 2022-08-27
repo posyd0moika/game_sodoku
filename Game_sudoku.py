@@ -3,9 +3,8 @@ from kivy.uix.button import Button
 from kivy.config import Config
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.label import Label
-import time
 import random
-import time
+
 
 
 def swap_colum(m, n=random.randint(20, 100)):
